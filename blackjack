@@ -1,0 +1,80 @@
+import random
+
+# Function to calculate the total value of a hand
+def calculate_hand(hand):
+    total = 0
+    num_aces = 0
+    for card in hand:
+        if card == 'A':
+            num_aces += 1
+            total += 11
+        elif card in ['K', 'Q', 'J']:
+            total += 10
+        else:
+            total += int(card)
+    while total > 21 and num_aces > 0:
+        total -= 10
+        num_aces -= 1
+    return total
+
+# Function to play the game
+def play_game():
+    deck = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'] * 4
+    random.shuffle(deck)
+    player_hand = [deck.pop(), deck.pop()]
+    dealer_hand = [deck.pop(), deck.pop()]
+
+    # Show initial hands
+    print(f"Player's hand: {player_hand}")
+    print(f"Dealer's hand: {dealer_hand[0]}")
+
+    # Player's turn
+    while True:
+        action = input("Do you want to hit, stand, or double down? ")
+        if action == "hit":
+            player_hand.append(deck.pop())
+            print(f"Player's hand: {player_hand}")
+            if calculate_hand(player_hand) > 21:
+                print("Bust! Dealer wins.")
+                return -1
+        elif action == "stand":
+            break
+        elif action == "double down":
+            if len(player_hand) != 2:
+                print("You can only double down with two cards!")
+                continue
+            player_hand.append(deck.pop())
+            print(f"Player's hand: {player_hand}")
+            break
+
+    # Dealer's turn
+    while calculate_hand(dealer_hand) < 17:
+        dealer_hand.append(deck.pop())
+        print(f"Dealer's hand: {dealer_hand}")
+
+    # Determine the winner
+    player_total = calculate_hand(player_hand)
+    dealer_total = calculate_hand(dealer_hand)
+    print(f"Player's hand: {player_hand} ({player_total})")
+    print(f"Dealer's hand: {dealer_hand} ({dealer_total})")
+    if player_total > 21:
+        return -1
+    elif dealer_total > 21 or player_total > dealer_total:
+        return 1
+    elif dealer_total > player_total:
+        return -1
+    else:
+        return 0
+
+# Play the game
+while True:
+    result = play_game()
+    if result == 1:
+        print("Player wins!")
+    elif result == 0:
+        print("Push!")
+    else:
+        print("Dealer wins!")
+    again = input("Do you want to play again? (y/n): ")
+    if again.lower() != "y":
+        break
