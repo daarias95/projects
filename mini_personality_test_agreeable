@@ -1,0 +1,69 @@
+print("Willkommen zum kleinen Test, wie sehr verträglich du bist.")
+print("Schreibe " "ja" " um den Test zu beginnen und " "nein" " um den Test abzubrechen.")
+print("Während dem Test kann du" "q" "drücken um alles abzubrechen.")
+print("Für jede passende Antwort gib bitte die entsprechende Zahl ein:")
+print("trifft gar nicht zu: 1")
+print("trifft eher nicht zu: 2")
+print("trifft eher zu: 3")
+print("trifft genau zu: 4")
+
+test = input("Möchtest du den Test starten? ").lower()
+resultat_sum = []
+
+while True:
+    if test == "ja":
+        vertrag1 = input("Ich achte darauf, immer freundlich zu sein. ")
+        print("")
+        if vertrag1.isdigit():
+            vertrag1 = int(vertrag1)
+            if vertrag1 > 4:
+                print("Bitte maximal die Zahl 4 eingeben.")
+                continue
+            elif vertrag1 < 1:
+                print("Bitte minimal 1 eingeben.")
+                continue
+        elif vertrag1 == "q" or "Q":
+            print("Blala.")
+            break
+        else:
+            print("bitte eine Zahl eingeben.")
+            continue
+        resultat_sum.append(vertrag1)
+        vertrag2 = input("Ich bin ein höflicher Mensch. ")
+        print("")
+        if vertrag2.isdigit():
+            vertrag2 = int(vertrag2)
+        elif vertrag1 == "q" or "Q":
+            print("Blala.")
+            break
+        else:
+            print("bitte eine Zahl eingeben.")
+            continue
+        resultat_sum.append(vertrag2)
+        vertrag3 = input("Ich helfe anderen, auch wenn man mir es nicht dankt. ")
+        print("")
+        if vertrag3.isdigit():
+            vertrag3 = int(vertrag3)
+            resultat_sum.append(vertrag3)
+            summe = sum(resultat_sum)
+            if summe <= 3:
+                print("Dein Verträglichkeitswert liegt bei 1.")
+            elif summe <= 6:
+                print("Dein Verträglichkeitswert liegt bei 2.")
+            elif summe <= 10:
+                print("Dein Verträglichkeitswert liegt bei 3.")
+            elif summe <= 12:
+                print("Dein Verträglichkeitswert liegt bei 4.")
+            break
+        elif vertrag1 == "q" or "Q":
+            print("Blala.")
+            break
+        else:
+            print("bitte eine Zahl eingeben.")
+            continue
+    elif test == "no":
+        print("Okay, bis zum nächsten mal.")
+        break
+    else:
+        print("Invalide Option")
+        quit()
