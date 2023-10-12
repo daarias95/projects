@@ -1,0 +1,82 @@
+def women():
+    gewicht = input("Gewicht: ")
+    if gewicht.isdigit():
+        gewicht = int(gewicht)
+    else:
+        print("Nur Zahlen.")
+        quit()
+    groesse = input("Größe in cm: ")
+    if groesse.isdigit():
+        groesse = int(groesse)
+    else:
+        print("Nur Zahlen.")
+        quit()
+    alter = input("Alter: ")
+    if alter.isdigit():
+        alter = int(alter)
+    else:
+        print("Nur Zahlen.")
+        quit()
+    grundumsatz = (10 * gewicht) + 6.25 * groesse - 5 * alter - 161
+    print("Dein PAL-Faktor:")
+    print("1.2 = nur sitzende/liegende Tätigkeit (alte gebrechliche Menschen)")
+    print("1.4 - 1.5 = sitzende Arbeitsweise + wenig Freizeitaktivität")
+    print("1.6 - 1.7 = überwiegend sitzend + zusätzlich gehende/stehende Tatäigkeiten")
+    print("1.8 - 1.9 = überwiegend gehende/stehende Tätigkeit (Hausfrau, Kellner etc.")
+    print("2.0 - 2.4 = anstrengende körperliche Arbeit")
+    pal_faktor = float(input("Dein PAL-Faktor: "))
+    leistungsumsatz = round(grundumsatz * (pal_faktor - 1), 2)
+    bedarf = grundumsatz + leistungsumsatz
+    print(f"Dein Grundumsatz: {grundumsatz}.")
+    print(f"Dein Leistungsumsatz: {leistungsumsatz}")
+    print(f"Dein täglicher Bedarf: {bedarf:.2f}")
+    print(f"Deine Kalorien in einer Diät (-500 Kalorien): {bedarf - 500}")
+
+def men():
+    gewicht = input("Gewicht: ")
+    if gewicht.isdigit():
+        gewicht = int(gewicht)
+    else:
+        print("Nur Zahlen.")
+        quit()
+    groesse = input("Größe in cm: ")
+    if groesse.isdigit():
+        groesse = int(groesse)
+    else:
+        print("Nur Zahlen.")
+        quit()
+    alter = input("Alter: ")
+    if alter.isdigit():
+        alter = int(alter)
+    else:
+        print("Nur Zahlen.")
+        quit()
+    grundumsatz = (10 * gewicht) + 6.25 * groesse - 5 * alter + 5
+    print("Dein PAL-Faktor:")
+    print("1.2 = nur sitzende/liegende Tätigkeit (alte gebrechliche Menschen)")
+    print("1.4 - 1.5 = sitzende Arbeitsweise + wenig Freizeitaktivität")
+    print("1.6 - 1.7 = überwiegend sitzend + zusätzlich gehende/stehende Tatäigkeiten")
+    print("1.8 - 1.9 = überwiegend gehende/stehende Tätigkeit (Hausfrau, Kellner etc.")
+    print("2.0 - 2.4 = anstrengende körperliche Arbeit")
+    pal_faktor = float(input("Dein PAL-Faktor: "))
+    leistungsumsatz = round(grundumsatz * (pal_faktor - 1), 2)
+    bedarf = grundumsatz + leistungsumsatz
+    print(f"Dein Grundumsatz: {grundumsatz}.")
+    print(f"Dein Leistungsumsatz: {leistungsumsatz}")
+    print(f"Dein täglicher Bedarf: {bedarf:.2f}")
+    print(f"Deine Kalorien in einer Diät (-500 Kalorien): {bedarf - 500}")
+
+
+
+print("Wähle dein Geschlecht.")
+print("m für männlich.")
+print("w für weiblich.")
+print("")
+sex = input("Dein Geschlecht: ").lower()
+if sex == "m":
+    men()
+elif sex == "w":
+    women()
+else:
+    print("Ungültig.")
+    quit()
