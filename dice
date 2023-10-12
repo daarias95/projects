@@ -1,0 +1,48 @@
+import random
+numbers = list()
+x = input("roll the dice? yes or no? ").lower()
+
+while True:
+    if x == "no":
+        print("see ya next time")
+        break
+    if x == "yes" or x == "y":
+        dice = input("press d to roll the dice. press q to quit: ").lower()
+        random_number = random.randint(1,6)
+        if dice == "q":
+            print("see ya next time")
+            break
+
+        elif dice != "d":
+            print("please press d")
+            continue
+        numbers.append(random_number)
+        print(random_number)
+print("those numbers showed up:", numbers)
+
+
+import random
+
+augenzahl = list()
+play = input("Do you want to play? y or n? ").lower()
+
+if play == "y":
+    while True:
+        start = input("Press d to roll the dice or q to quit: ")
+        if start == "d":
+            dice = random.randint(1, 6)
+            augenzahl.append(dice)
+            print(dice)
+        elif start == "q":
+            print("Goodbye.")
+            break
+        else:
+            print("Please d or q.")
+            continue
+    print("Die Augenzahlen nach der Reihenfolge:", augenzahl)
+    print("Die Augenzahl sortiert:", sorted(augenzahl))
+elif play == "n":
+    print("Okay, farewell stranger.")
+else:
+    print("Please y or n.")
+    quit()
